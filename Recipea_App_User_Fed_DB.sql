@@ -1,6 +1,6 @@
-CREATE DATABASE recipe_app_user_fed_db;
+CREATE DATABASE recipea_app_user_fed_db;
 
-USE recipe_app_user_fed_db;
+USE recipea_app_user_fed_db;
 
 CREATE TABLE recipe_data (
     recipe_ID INT NOT NULL PRIMARY KEY,
@@ -15,16 +15,16 @@ CREATE TABLE recipe_data (
     image_url VARCHAR(800) NOT NULL
 );
 
+CREATE TABLE recipe_ingredients (
+    ingredients_ID INT NOT NULL PRIMARY KEY,
+    recipe_ID INT NOT NULL,
+    ingredient_name VARCHAR(300) NOT NULL,
+    ingredients_measures VARCHAR(200) NOT NULL
+);
+
 INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal_type, health, cuisine_type, ingredients, cooking_directions, image_url)
  VALUES 
  (1, "Brazilian Cheese Bread", "00:40:00", 6, "Breakfast", "Gluten-Free", "Brazilian",
-	"½ cup olive oil or butter,
-    ⅓ cup water,
-    ⅓ cup milk or soy milk,
-    1 teaspoon salt,
-    2 cups tapioca flour,
-    ⅔ cup freshly grated Parmezan cheese,
-    2 beaten eggs",
     "Preheat the oven to 375 degrees F (190 degrees C).
     Combine olive oil, water, milk, and salt in a large saucepan and place over high heat.
     Bring to a boil and immediately remove from the heat.
@@ -38,15 +38,6 @@ INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal
     ),
     
  (2, "Beef Wellington", "1:45:00", 4, "Dinner", "Low-Carb", "British",
-	"1 pound thick beef tenderloin
-	Kosher salt and freshly ground black pepper
-	2 tablespoons extra virgin olive oil
-	2 tablespoons yellow mustard
-	1 pound mushrooms
-	4 thin slices ham
-	1 (7 to 8 1/2-ounce sheet) puff pastry
-	2 large egg yolks, beaten
-	Flaky salt, for sprinkling on top",
     "Preheat the oven:
 	Allow the oven to preheat to 400°F as you assemble the Wellington.
     Sear the beef:
@@ -99,26 +90,6 @@ INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal
     "https://upload.wikimedia.org/wikipedia/commons/a/a9/Beef_Wellington_2019.jpg"),
     
  (3, "Potato Varenyky",  "1:20:00", 12, "Dinner", "Vegetarian", "Ukranian",
-	"Vareniki Dough:
-    2 cups whole milk,
-    ½ cup unsalted butter 1 stick,
-    4 cups all-purpose flour plus more for rolling,
-    1 egg,
-    1 teaspoon kosher salt
-    
-    Potato Filling:
-    4 large russet potatoes peeled and quartered,
-	6 tablespoons unsalted butter,
-	kosher salt for water to taste,
-	2 bay leaves,
-	¼ cup whole milk
-    
-    To Serve:
-    unsalted butter,
-    sour cream,
-    fresh dill or green onions,
-    caramelized onions optional,
-    crispy bacon optional",
     "Potato Filling
 	Bring a large pot to a boil, salt with water to taste.
     Peel the potatoes and cut into quarters.
@@ -158,15 +129,6 @@ INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal
     "https://upload.wikimedia.org/wikipedia/commons/6/65/Warenyky1.jpg"),
     
  (4, "Papanasi", "00:55:00", 4, "Dessert", "Vegetarian", "Romanian",
-	"200 g cow's cheese (or feta cheese),
-    1 egg,
-    1 cup plain flour,
-    ½ teaspoon bicarbonate of soda,
-    zest of one lemon,
-    ½ cup granulated sugar,
-    2 cups vegetable oil to fry,
-    sour cream,
-    jam",
     "Grate or crumble the cheese and add it to a large bowl.
     Mix in the egg, sugar, lemon zest and bicarbonate of soda.
     Add the flour and knead until you get a dough that is still very slightly sticky.
@@ -185,27 +147,6 @@ INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal
     "https://upload.wikimedia.org/wikipedia/commons/7/7f/Papanasi-romaniancook.jpg"),
     
  (5, "Galaktoboureko", "00:50:00", 12, "Dessert", "Vegetarian", "Greek",
-	"For the syrup:
-    900 g granulated sugar,
-    550 g water,
-    130 g glucose,
-    1 stick(s) cinnamon,
-    2 cloves,
-    orange peels, of 2 oranges,
-    
-    For the cream:
-    2 oranges,
-    1 liter whole milk,
-    250 g granulated sugar,
-    130 g semolina fine,
-    270 g butter, ice-cold, cut into cubes,
-    4 eggs, medium,
-    1 g vanilla powder,
-    450 g phyllo dough sheets
-    
-    To serve:
-    orange peels, from the syrup,
-    12 cloves",
     "For the syrup:
     Place a pot over medium heat, add the sugar, the water, the glucose, the cinnamon,
     the cloves, the orange peels, and let them come to a boil.
@@ -248,6 +189,60 @@ INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal
     "https://upload.wikimedia.org/wikipedia/commons/7/7d/Galaktoboureko.jpg");
     
     
+    INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, meal_type, health, cuisine_type, ingredients, cooking_directions, image_url)
+ VALUES 
+ (1, 1, "olive oil", "½ cup"),
+ (1, 1, "water", "½ cup"),
+ (1, 1, "milk", "½ cup"),
+ (1, 1, "salt", "1 teaspoon"),
+ (1, 1, "tapioca flour", "2 cups"),
+ (1, 1, "Parmesan cheese", "⅔ cup"),
+ (1, 1, "eggs", "2"),
+ (2, 2, "thick beef tenderloin", "1 pound"),
+ (2, 2, "Kosher salr", "-"),
+ (2, 2, "ground black pepper", "-"),
+ (2, 2, "extra virgin olive oil", "2 tablespoons"),
+ (2, 2, "yellow mustard", "2 tablespoons"),
+ (2, 2, "mushrooms", "1 pound"),
+ (2, 2, "thin slices of ham", "4"),
+ (2, 2, "puff pastry", "7 to 8 1/2-ounce sheet"),
+ (2, 2, "egg yolk", "2 large"),
+ (2, 2, "flaky salt", "-"),
+ (3, 3, "whole milk", "2¼ cups"),
+ (3, 3, "unsalted butter", "1 stick"),  
+ (3, 3, "all-purpose flour", "4 cups"),
+ (3, 3, "eggs", "1"),
+ (3, 3, "Kosher salt", "1 teaspoon"),  
+ (3, 3, "russet potatoes", "4 large"),
+ (3, 3, "unsalted butter", "6 tablespoons"),
+ (3, 3, "bay leaves", "2"),  
+ (3, 3, "sour cream", "-"),
+ (3, 3, "fresh dill", "-"),
+ (3, 3, "caramelized onions", "-"),  
+ (3, 3, "crispy bacon", "-"),
+ (4, 4, "white cheese", "200 g"),
+ (4, 4, "egg", "1"),
+ (4, 4, "plain flour", "1 cup"),
+ (4, 4, "bicarbonate of soda", "½ teaspoon"),
+ (4, 4, "zest of lemon", "one"),
+ (4, 4, "granulated sugar", "½ cup"),
+ (4, 4, "vegetable oil", "2 cups"),
+ (4, 4, "sour cream", "-"),
+ (4, 4, "jam", "-"),
+ (5, 5, "granulated sugar", "1.15 kg"),
+ (5, 5, "water", "550 g"),
+ (5, 5, "glucose", "130 g"),
+ (5, 5, "cinnamon", "1 stick"),
+ (5, 5, "cloves", "14"),
+ (5, 5, "orange", "2"),
+ (5, 5, "orange peels", "2"),
+ (5, 5, "whole milk", "1 liter"),
+ (5, 5, "fine semolina", "130 g"),
+ (5, 5, "butter", "270 g"),
+ (5, 5, "eggs", "4 medium"),
+ (5, 5, "vanilla powder", "1 g"),
+ (5, 5, "phyllo dough sheets", "450 g");
+
 INSERT INTO recipe_data(recipe_ID, recipe_name, preparation_time, portions, ingredients, cooking_directions)
  VALUES 
  (6, "The Scary Cartoon", "1:23:00", "PG"),
