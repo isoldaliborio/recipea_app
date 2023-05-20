@@ -1,0 +1,17 @@
+recipea/
+├── app/
+│   ├── api/
+│   │   ├── edamam.py
+│   ├── db/
+│   ├── models/
+│   ├── routes/
+│   │   ├── api_routes.py
+│   ├── templates/
+│   ├── __init__.py
+│   ├── run.py
+│   ├── config.py
+│   ├── routes.py
+├── .env
+├── requirements.txt
+.gitignore
+README.md
