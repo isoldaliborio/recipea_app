@@ -127,7 +127,8 @@ The requirements package for the application
 
 ## Folder structure
 
-```recipea/  
+```
+recipea/  
 ├── app/  
 │   ├── api/  
 │   │   ├── edamam.py  
@@ -149,4 +150,5 @@ The requirements package for the application
 ├── .env.sample  
 ├── requirements.txt  
 .gitignore  
-README.md```
+README.md
+```
