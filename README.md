@@ -1,12 +1,95 @@
+
 # Recipea app 
-Final Project for CFGDegree. app recipea
+Final Project for CFGDegree. 
+
 Software 2
-group 6
-Team: 
+
+**Team:** group 6
+1.  Danielle Maria Perez Lott
+2.  Ella Myton
+3.  Elizabeth Turay
+4.  Isolda Liborio
+5.  Lidiia Kliuchna
+6.  Raluca Teslovan
 
 
-## Instructions 
-.......
+
+# Instructions 
+(to run the application (for Mac/Linux):
+
+  
+
+## Set-up the database
+
+  
+
+1. Using MySQLWorkbench, connect to MySQL and run all instructions contained in the `app/db/schema/Recipea_App_User_Fed_DB.sql` file. You can run them one by one.
+
+  
+  
+
+## Set-up dev environment
+
+  
+
+1.  **Create a virtual environment**
+
+`cd <your virtual environment folder>`
+
+`python -m venv <name of venv>`
+
+`source <path of venv>/bin/activate`
+
+  
+
+2.  **Clone the repository**
+
+`cd <project location>`
+
+`git clone <repo url>`
+
+  
+
+3.  **Install dependencies**
+
+`pip install -r requirements.txt`
+
+  
+
+4.  **Create the .env file**
+
+Make a copy of `.env.sample` and name it `.env`. In this new file, fill in the variables with the missing credentials. E.g:
+
+`MYSQL_USER=root`
+
+  
+
+4.  **Run the Flask app**
+
+`cd app`
+
+`python run.py`
+
+The application should be running on `localhost:5000`
+
+  
+  
+
+## Test the API
+
+1. Once the app is running you can start making requests using the API endpoints.
+
+-  `GET` requests can be made from the browser
+
+-- `localhost:5000/search_recipe?cuisineType=italian`
+
+- For `POST`, you can use the app [Postman](https://www.postman.com/downloads/) or the command `curl` using the terminal, or create a file with the client side.
+
+-- `add link to Postman docs/tutorial`
+
+-- `paste curl command`
+add example:
+curl -X POST -H "Content-Type: application/json" -d '{"recipe_name": "Moqueca baiana vegetariana", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "01:00:00", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes
 
   
 ## App architecture  
@@ -15,6 +98,7 @@ The main folder for the application
 
 ### `app/api/edamam.py`
 Methods to interact with the Edamam API. They will be called from `app/routes/api_routes.py`
+
 ### `app/api/recipea_db.py`
 Methods to interact with the Recipea database (MySQL). They will be called from `app/routes/api_routes.py`
 
