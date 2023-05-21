@@ -9,4 +9,4 @@ app.register_blueprint(api_routes)
 
 # Main entry point of the application
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.run(debug=True, port=5000)
