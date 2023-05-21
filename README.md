@@ -81,15 +81,15 @@ The application should be running on `localhost:5000`
 
 -  `GET` requests can be made from the browser
 
--- `localhost:5000/search_recipe?cuisineType=italian`
+-- `http://127.0.0.1:5000/search/edamam?Health=Kosher&cuisineType=italian&ingredient=potato`
 
 - For `POST`, you can use the app [Postman](https://www.postman.com/downloads/) or the command `curl` using the terminal, or create a file with the client side.
 
 -- `add link to Postman docs/tutorial`
 
--- `paste curl command`
-add example:
-curl -X POST -H "Content-Type: application/json" -d '{"recipe_name": "Moqueca baiana vegetariana", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "01:00:00", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes
+Using curl from the terminal:
+
+-- `curl -X POST -H "Content-Type: application/json" -d '{"recipe_name": "Moqueca baiana vegetariana", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "01:00:00", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes`
 
   
 ## App architecture  
@@ -125,8 +125,9 @@ A template for the .env file. See instructions above.
 ### `requirements.txt  `
 The requirements package for the application
 
+## Folder structure
 
-recipea/  
+```recipea/  
 ├── app/  
 │   ├── api/  
 │   │   ├── edamam.py  
@@ -148,4 +149,4 @@ recipea/
 ├── .env.sample  
 ├── requirements.txt  
 .gitignore  
-README.md
+README.md```
