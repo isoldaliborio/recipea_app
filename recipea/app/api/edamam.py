@@ -11,7 +11,7 @@ app_id = os.getenv("EDAMAM_APP_ID")
 app_key = os.getenv("EDAMAM_APP_KEY")
 
 
-def search_recipes(cuisine_type, health, meal_type, ingredient):
+def get_recipe_edamam(cuisine_type, health, meal_type, ingredient):
     try:
         meal_type = f"&mealType={meal_type}" if meal_type else ""
         health = f"&Health={health}" if health else ""
@@ -32,9 +32,9 @@ def search_recipes(cuisine_type, health, meal_type, ingredient):
             if not results["hits"]:
                 return None
 
-            data = {}
+            data = []
 
-            for i, recipe in enumerate(results["hits"]):
+            for recipe in results["hits"]:
                 ingredients = recipe["recipe"]["ingredients"]
                 ingredient_info = []
                 for ingredient in ingredients:
@@ -45,12 +45,12 @@ def search_recipes(cuisine_type, health, meal_type, ingredient):
                         "category": ingredient["foodCategory"]
                     })
 
-                data[i] = {
+                data.append({
                     "meal_type": recipe["recipe"]["mealType"][0],
                     "health": ", ".join(recipe["recipe"]["healthLabels"]),
                     "cuisine_type": recipe["recipe"]["cuisineType"][0],
                     "ingredients": ingredient_info
-                }
+                })
 
             return data
 
