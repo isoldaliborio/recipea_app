@@ -74,3 +74,30 @@ def insert_recipe(data):
     except Exception as e:
         # Handle any exceptions that occurred during the process
         return {"status": "error", "message": str(e)}, 400
+
+
+#  delete recipe using recipe ID
+def delete_recipe(recipe_name):
+    try:
+        # Establish database connection
+        db = connect()
+
+        # Create a cursor object to execute SQL queries
+        cursor = db.cursor(buffered=True)
+
+        # Delete recipe from table recipes using recipe ID
+        delete_recipe_query = "DELETE FROM recipes WHERE recipe_name = %s"
+        cursor.execute(delete_recipe_query, (recipe_name,))
+
+        # Commit the changes to the database
+        db.commit()
+
+        return {"status": "success"}, 200
+
+    except Exception as e:
+        # Handle any exceptions that occurred during the process
+        return {"status": "error", "message": str(e)}, 400
+
+
+
+
