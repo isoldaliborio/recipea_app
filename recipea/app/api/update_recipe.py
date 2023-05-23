@@ -22,7 +22,7 @@ def update_recipe(recipe_id, data):
         # Update recipe data in the recipes table
         update_recipe_query = """
             UPDATE recipes 
-            SET recipe_name = COALESCE(%s, recipe_name), 
+            SET recipe_name = COALESCE(%s, recipe_name), #COALESCE - function used by SQL to return the first value which is not NULL
                 cuisine_type = COALESCE(%s, cuisine_type), 
                 health = COALESCE(%s, health), 
                 meal_type = COALESCE(%s, meal_type), 
