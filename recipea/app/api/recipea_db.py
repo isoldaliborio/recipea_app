@@ -1,3 +1,4 @@
+import time
 from recipea.app.db.mysql_connector import connect
 
 
@@ -14,6 +15,8 @@ def insert_recipe(data):
             meal_type = data['meal_type']
             cooking_directions = data['cooking_directions']
             preparation_time = data.get('preparation_time', None)
+            if preparation_time:
+                preparation_time = time.strftime("%H:%M:%S", time.gmtime(int(preparation_time) * 60))
             portions = data.get('portions', None)
             image_url = data.get('image_url', None)
         except KeyError:
