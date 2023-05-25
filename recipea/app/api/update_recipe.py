@@ -1,6 +1,8 @@
 from recipea_db import connect
 import requests
 
+
+
 def update_recipe(recipe_id, data):
     try:
         # Database connection
