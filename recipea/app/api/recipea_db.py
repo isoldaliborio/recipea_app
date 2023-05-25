@@ -1,6 +1,7 @@
 from recipea.app.db.mysql_connector import connect
 
 
+
 def insert_recipe(data):
     try:
         # Database connection
