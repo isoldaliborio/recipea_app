@@ -81,7 +81,7 @@ def search_recipe():
     try:
         cursor = db.cursor(buffered=True)
 
-        cursor.execute("""SELECT recipe_name, preparation_time, portions,meal_type, health, cuisine_type,cooking_directions, image_url, name FROM recipes,ingredients
+        cursor.execute("""SELECT recipe_name, image_url, name FROM recipes,ingredients
                WHERE health LIKE %s OR recipe_name LIKE %s OR name LIKE %s""", (user_input, user_input, user_input, ))
         result = cursor.fetchall()
 
@@ -94,5 +94,4 @@ def search_recipe():
         if db.is_connected():
             cursor.close()
             db.close()
-
 
