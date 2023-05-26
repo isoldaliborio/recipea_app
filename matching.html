@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFG Project</title>
+    <link rel="stylesheet" href="matching.css">
+    <link href='https://fonts.googleapis.com/css?family=Source Sans Pro' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!----------------------Header------------------------->
+
+<header>
+    <div class="container">
+      <nav>
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="images/logo.svg" class="logo" alt="Logo">
+            </a>
+        </div>
+        <ul id="header-nav">
+          <li><a href="sendyours.html">Send Yours</a></li>
+        </ul>
+        <div class="right-section">
+          <div class="search-bar">
+            <input type="text" placeholder="Search..." />
+            <button class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <a href="matches.html">
+          <button class="favorite-button">
+            <i class="fa fa-heart" style="font-size:30px;color:red"></i>
+          </button>
+            </a>
+        </div>
+      </nav>
+    </div>
+</header>
+
+<div class="card-container">
+    <div class="card">
+      <img src="images/IMG_6452-1-768x623.jpg" alt="Image">
+      <div class="card-content">
+        <h3 class="card-title">Ribeye Steak with Potato Wedges & Asparagus</h3>
+        <p class="card-description">Meal type: Dinner</p>  
+        <p class="card-description">Cuisine: Argentinian</p> 
+      </div>
+      <div class="card-icons">
+        <i class="fas fa-times"></i>
+        <i class="fas fa-heart"></i>
+      </div>
+
+      <script>
+        const card = document.querySelector('card');
+        const heartIcon = document.querySelector('fas fa-heart');
+        const crossIcon = document.querySelector('fas fa-times');
+    
+        function handleHeartClick() {
+        }
+    
+        function handleCrossClick() {
+        }
+    
+        heartIcon.addEventListener('click', handleHeartClick);
+        crossIcon.addEventListener('click', handleCrossClick);
+      </script>  
+
+
+    </div>
+  </div>
+
+  <script>
+    const card = document.querySelector('card');
+    const heartIcon = document.querySelector('fas fa-heart');
+    const crossIcon = document.querySelector('fas fa-times');
+
+    function handleHeartClick() {
+    }
+
+    function handleCrossClick() {
+    }
+
+    heartIcon.addEventListener('click', handleHeartClick);
+    crossIcon.addEventListener('click', handleCrossClick);
+  </script>  
+
+<!-----------------------Footer------------------------->
+<footer> 
+    <div class="copyright">
+            <p> © 2023 <span>Danielle Lott, Elizabeth Turay, Raluca Teslovan, Ella Myton, Isolda Liborio, Lidiia Kliuchna</span></p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
