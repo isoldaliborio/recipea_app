@@ -1,6 +1,5 @@
 from recipea.app.db.mysql_connector import connect
-
-
+import json
 def insert_recipe(data):
     try:
         # Database connection
@@ -75,25 +74,60 @@ def insert_recipe(data):
         # Handle any exceptions that occurred during the process
         return {"status": "error", "message": str(e)}, 400
 
-def search_recipe(user_input):
-
+def search_recipe(cuisine_type, health, meal_type, ingredient):
     db = connect()
-
     try:
-
         cursor = db.cursor(buffered=True)
 
-        cursor.execute("""SELECT recipe_name, image_url, name FROM recipes,ingredients
-               WHERE health LIKE %s OR recipe_name LIKE %s OR name LIKE %s""", (user_input, user_input, user_input, ))
-        result = cursor.fetchall()
+        query = """SELECT 
+                    r.recipe_name, 
+                    r.portions, 
+                    r.meal_type, 
+                    r.health, 
+                    r.cuisine_type, 
+                    r.cooking_directions, 
+                    r.image_url, i.name
+                   FROM recipes r
+                   LEFT JOIN recipes_ingredients ri ON r.recipe_ID = ri.recipe_ID
+                   LEFT JOIN ingredients i ON ri.ingredient_ID = i.ingredient_ID
+                   WHERE """
 
-        for row in result:
-            return row
+        search_params = []
+        query_append = ""
+
+        # Add search filters dynamically
+        if cuisine_type:
+            search_params.append(cuisine_type)
+            query_append += """AND r.cuisine_type = %s """
+        if health:
+            search_params.append(health)
+            query_append += """AND r.health = %s """
+        if meal_type:
+            search_params.append(meal_type)
+            query_append += """AND r.meal_type = %s """
+        if ingredient:
+            search_params.append(f"%{ingredient}%")
+            query_append += """AND i.name LIKE %s """
+
+        if query_append:
+            # Remove "AND " from the first item
+            query_append = query_append[4:]
+
+        query += query_append
+
+        print(query)
+
+        cursor.execute(query, tuple(search_params))
+
+        results = cursor.fetchall()
+
+        # Convert the data to JSON format
+        results = json.dumps(results)
+
+        # Remove escape character ("\")
+        results = json.loads(results.replace('\\"', '"'))
+
+        return {"status": "success", "data": results}, 200
+
     except Exception as e:
-        return "Error:", e
-
-    finally:
-        if db.is_connected():
-            cursor.close()
-            db.close()
-
+        return {"status": "error", "message": str(e)}, 400

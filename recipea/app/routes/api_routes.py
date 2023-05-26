@@ -36,11 +36,14 @@ def insert_recipe_db():
 
 @api_routes.route('/recipes', methods=['GET'])
 def search_recipe_():
+    cuisine_type = request.args.get('cuisineType')
+    health = request.args.get('Health')
+    meal_type = request.args.get('mealType')
+    ingredient = request.args.get('ingredient')
 
-    data = search_recipe(user_input)
+    data = search_recipe(cuisine_type, health, meal_type, ingredient)
 
     if data is None:
-        return "Nothing found"
+        return "Your search did not find any results", 400
 
     return data
-
