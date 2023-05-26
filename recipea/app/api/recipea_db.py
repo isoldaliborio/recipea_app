@@ -1,5 +1,5 @@
 from recipea.app.db.mysql_connector import connect
-from mysql.connector import Error
+
 
 def insert_recipe(data):
     try:
@@ -75,10 +75,12 @@ def insert_recipe(data):
         # Handle any exceptions that occurred during the process
         return {"status": "error", "message": str(e)}, 400
 
-def search_recipe():
-    user_input = input("Please enter the recipe you would like to find: ")
+def search_recipe(user_input):
+
     db = connect()
+
     try:
+
         cursor = db.cursor(buffered=True)
 
         cursor.execute("""SELECT recipe_name, image_url, name FROM recipes,ingredients
@@ -86,9 +88,9 @@ def search_recipe():
         result = cursor.fetchall()
 
         for row in result:
-            print(row)
+            return row
     except Exception as e:
-        print("Error:", e)
+        return "Error:", e
 
     finally:
         if db.is_connected():

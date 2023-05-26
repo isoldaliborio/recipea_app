@@ -37,10 +37,10 @@ def insert_recipe_db():
 @api_routes.route('/recipes', methods=['GET'])
 def search_recipe_():
 
-    data = search_recipe()
+    data = search_recipe(user_input)
 
     if data is None:
-        print("Nothing found")
+        return "Nothing found"
 
     return data
 
