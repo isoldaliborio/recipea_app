@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from recipea.app.api.edamam import get_recipe_edamam
-from recipea.app.api.recipea_db import insert_recipe, update_recipe
+from recipea.app.api.recipea_db import insert_recipe, update_recipe, search_recipe
 
 # Create a Blueprint for routes
 api_routes = Blueprint('api_routes', __name__)
@@ -34,6 +34,7 @@ def insert_recipe_db():
     # Response for the client
     return message, status
 
+
 # API Route for update_recipe function
 @api_routes.route('/recipes/<int:recipe_id>', methods=['PUT'])
 def update_recipe_db(recipe_id):
@@ -46,3 +47,17 @@ def update_recipe_db(recipe_id):
     # Response for the client
     return message, status
 
+
+@api_routes.route('/recipes', methods=['GET'])
+def search_recipe_():
+    cuisine_type = request.args.get('cuisineType')
+    health = request.args.get('Health')
+    meal_type = request.args.get('mealType')
+    ingredient = request.args.get('ingredient')
+
+    data = search_recipe(cuisine_type, health, meal_type, ingredient)
+
+    if data is None:
+        return "Your search did not find any results", 400
+
+    return data
