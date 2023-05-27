@@ -206,3 +206,33 @@ def search_recipe(cuisine_type, health, meal_type, ingredient):
 
     except Exception as e:
         return {"status": "error", "message": str(e)}, 400
+
+
+#  delete recipe using recipe ID
+def delete_recipe(recipe_id):
+    try:
+        # Establish database connection
+        db = connect()
+
+        # Create a cursor object to execute SQL queries
+        cursor = db.cursor(buffered=True)
+
+        # Delete recipe from table recipes_ingredients and recipes using recipe ID
+        delete_recipes_ingredients_query = "DELETE FROM recipes_ingredients WHERE recipe_ID = %s"
+        cursor.execute(delete_recipes_ingredients_query, (recipe_id,))
+
+        delete_recipe_query = "DELETE FROM recipes WHERE recipe_ID = %s"
+        cursor.execute(delete_recipe_query, (recipe_id,))
+
+        # Commit the changes to the database
+        db.commit()
+
+        return {"status": "success"}, 200
+
+    except Exception as e:
+        # Handle any exceptions that occurred during the process
+        return {"status": "error", "message": str(e)}, 400
+
+
+
+

@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from recipea.app.api.edamam import get_recipe_edamam
-from recipea.app.api.recipea_db import insert_recipe, update_recipe, search_recipe
+from recipea.app.api.recipea_db import insert_recipe, update_recipe, search_recipe, delete_recipe
 
 # Create a Blueprint for routes
 api_routes = Blueprint('api_routes', __name__)
@@ -61,3 +61,16 @@ def search_recipe_():
         return "Your search did not find any results", 400
 
     return data
+
+
+@api_routes.route('/recipes/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe_db(recipe_id):
+    # Call the delete_recipe function from recipea_dp.py usine recipe_ID
+    message, status = delete_recipe(recipe_id)
+
+    # Response for the client side advising if route was successful
+    return message, status
+
+
+
+
