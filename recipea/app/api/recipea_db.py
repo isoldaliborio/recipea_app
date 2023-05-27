@@ -1,5 +1,5 @@
 import json
-from recipea_app_software_2_group_6.recipea.app.db.mysql_connector import connect
+from recipea.app.db.mysql_connector import connect
 
 
 def insert_recipe(data):

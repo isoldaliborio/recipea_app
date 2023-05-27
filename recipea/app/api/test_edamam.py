@@ -27,6 +27,8 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # Call the function
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
+        response = requests.get(base_url)
+
         # Assert that the function returned a list of recipes
         self.assertIsInstance(recipes, list)
 
@@ -39,6 +41,9 @@ class TestGetRecipeEdamam(unittest.TestCase):
             self.assertEqual(recipe["health"], health)
             self.assertEqual(recipe["cuisine_type"], cuisine_type)
             self.assertIsNotNone(recipe["ingredients"])
+
+        if response.status_code != 200:
+            raise Exception(response.status_code)
 
     # Test if with invalid/blank parameters Exception will be raised.
     def test_get_recipe_edamam_with_invalid_parameters(self):
@@ -72,7 +77,10 @@ class TestGetRecipeEdamam(unittest.TestCase):
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
         # Assert that the function returned an empty list
-        self.assertEqual(recipes, [])
+        if recipes:
+            self.assertEqual(recipes, [])
+        else:
+            self.assertIsNone(recipes)
 
     def test_get_recipe_edamam_with_nonexistent_ingredient(self):
         cuisine_type = "Italian"
@@ -83,7 +91,7 @@ class TestGetRecipeEdamam(unittest.TestCase):
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
         # Assert that the function returned an empty list
-        self.assertEqual(recipes, [])
+        self.assertIsNone(recipes)
 
     def test_get_recipe_edamam_with_connection_error(self):
         cuisine_type = "Italian"

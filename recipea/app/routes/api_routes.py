@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from recipea_app_software_2_group_6.recipea.app.api.edamam import get_recipe_edamam
-from recipea_app_software_2_group_6.recipea.app.api.recipea_db import insert_recipe, update_recipe, search_recipe
+from recipea.app.api.edamam import get_recipe_edamam
+from recipea.app.api.recipea_db import insert_recipe, update_recipe, search_recipe
 
 # Create a Blueprint for routes
 api_routes = Blueprint('api_routes', __name__)
