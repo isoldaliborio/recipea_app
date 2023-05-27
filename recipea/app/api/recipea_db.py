@@ -77,7 +77,7 @@ def insert_recipe(data):
 
 
 #  delete recipe using recipe ID
-def delete_recipe(recipe_name):
+def delete_recipe(recipe_id):
     try:
         # Establish database connection
         db = connect()
@@ -85,9 +85,12 @@ def delete_recipe(recipe_name):
         # Create a cursor object to execute SQL queries
         cursor = db.cursor(buffered=True)
 
-        # Delete recipe from table recipes using recipe ID
-        delete_recipe_query = "DELETE FROM recipes WHERE recipe_name = %s"
-        cursor.execute(delete_recipe_query, (recipe_name,))
+        # Delete recipe from table recipes_ingredients and recipes using recipe ID
+        delete_recipes_ingredients_query = "DELETE FROM recipes_ingredients WHERE recipe_ID = %s"
+        cursor.execute(delete_recipes_ingredients_query, (recipe_id,))
+
+        delete_recipe_query = "DELETE FROM recipes WHERE recipe_ID = %s"
+        cursor.execute(delete_recipe_query, (recipe_id,))
 
         # Commit the changes to the database
         db.commit()

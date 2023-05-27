@@ -35,16 +35,14 @@ def insert_recipe_db():
     return message, status
 
 
-@api_routes.route('/recipes', methods=['DELETE'])
-def delete_recipe_db():
-    # Get the recipe name from the request data or parameters
-    recipe_name = request.json.get('recipe_name')
-
-    # Call the delete_recipe function from recipea_dp.py usine recipe name
-    message, status = delete_recipe(recipe_name)
+@api_routes.route('/recipes/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe_db(recipe_id):
+    # Call the delete_recipe function from recipea_dp.py usine recipe_ID
+    message, status = delete_recipe(recipe_id)
 
     # Response for the client side advising if route was successful
     return message, status
+
 
 
 
