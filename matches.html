@@ -45,6 +45,64 @@
     </div>
   </header>
 
+
+
+<!-----------------------Matches Section------------------------->
+
+<section class="matches-section">
+  <div class="container">
+    <div id="matches-list" class="card-container">
+      <!-- Cards will be dynamically rendered here -->
+    </div>
+  </div>
+</section>
+
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+<script>
+  // Get the matches list container element
+  const matchesList = document.getElementById('matches-list');
+
+  // Retrieve saved cards from local storage
+  const savedCards = localStorage.getItem('matchesData');
+  let cards = [];
+  if (savedCards) {
+    cards = JSON.parse(savedCards);
+  }
+
+  // Generate HTML for each card and append it to the matches list
+  cards.forEach(card => {
+    const cardHTML = `
+      <div class="card">
+        <img src="images/IMG_6452-1-768x623.jpg" alt="Image">
+        <div class="card-content">
+          <h3 class="card-title">${card.title}</h3>
+          <p class="card-description">${card.description}</p>
+        </div>
+        <div class="card-icons">
+          <i class="fas fa-times"></i>
+          <i class="fas fa-heart favorite-button"></i>
+        </div>
+      </div>
+    `;
+    matchesList.innerHTML += cardHTML;
+  });
+</script>
+Make sure to replace your-font-awesome-kit.js with the correct URL for your Font Awesome kit.
+
+Step 4: Save your HTML file and open it in a web browser. The matches section will be rendered, and the cards will be dynamically generated based on the data stored in the matchesData local storage.
+
+Remember to have the Font Awesome library included, either by using a CDN link or by downloading the Font Awesome files and referencing them locally.
+
+With these steps, the matches section with the dynamically generated cards should be displayed on your web page.
+
+
+
+
+
+
+
+
+
 <!-----------------------Footer------------------------->
 <footer> 
     <div class="copyright">

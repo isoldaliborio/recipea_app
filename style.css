@@ -30,7 +30,7 @@
   }
   .element-above-background {
     position: relative;
-    z-index: 1; /* Higher value to bring the element forward */
+    z-index: 1; 
   }
 
 

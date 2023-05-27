@@ -39,9 +39,80 @@
             </a>
         </div>
       </nav>
-      <div class="header-text">
-        <p><b>Send Yours!</b></p>
-      </div>
+      <div class="container-box">
+        <h2 class="title">Send Yours!</h2>
+        <p class="description">Want more matches? Send us your recipe. <span class="required">*Required</span></p>
+        
+        <div class="input-field">
+          <input type="text" id="recipe" required>
+        </div>
+        
+        <div class="upload-button">
+            <label for="picture">Upload Picture:</label>
+            <span class="required">* Required</span>
+        </div>
+        <div class="upload-button1">
+            <input type="file" id="picture" required>
+        </div>
+          
+          
+        <div class="columns">
+            <div class="column-1">
+              <h3>Cuisine</h3>
+              <ul>
+                <li>
+                  <input type="checkbox" id="chinese" name="cuisine" value="chinese">
+                  <label for="chinese">Chinese</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="thai" name="cuisine" value="thai">
+                  <label for="thai">Thai</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="american" name="cuisine" value="american">
+                  <label for="american">American</label>
+                </li>
+              </ul>
+            </div>
+            <div class="column-2">
+              <h3>Health</h3>
+              <ul>
+                <li>
+                  <input type="checkbox" id="sesame-free" name="health" value="sesame-free">
+                  <label for="sesame-free">Sesame-free</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="pork-free" name="health" value="pork-free">
+                  <label for="pork-free">Pork-free</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="shellfish-free" name="health" value="shellfish-free">
+                  <label for="shellfish-free">Shellfish-free</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="red-meat-free" name="health" value="red-meat-free">
+                  <label for="red-meat-free">Red Meat-free</label>
+                </li>
+              </ul>
+            </div>
+            <div class="column-3">
+              <h3>Meal Type</h3>
+              <ul>
+                <li>
+                  <input type="checkbox" id="breakfast" name="meal-type" value="breakfast">
+                  <label for="breakfast">Breakfast</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="lunch" name="meal-type" value="lunch">
+                  <label for="lunch">Lunch</label>
+                </li>
+                <li>
+                  <input type="checkbox" id="dinner" name="meal-type" value="dinner">
+                  <label for="dinner">Dinner</label>
+                </li>
+              </ul>
+            </div>
+          </div>
       <a href="submission.html">
         <button class="go-button">GO</button>
       </a>

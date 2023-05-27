@@ -29,7 +29,7 @@
   }
   .element-above-background {
     position: relative;
-    z-index: 1; /* Higher value to bring the element forward */
+    z-index: 1; 
   }
 
 
@@ -160,8 +160,22 @@
     border-radius: 10px;
     margin-top: 6%;
     overflow: hidden;
+    opacity: 0;
+    animation: fade-in 1s ease-in-out forwards;
   }
   
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
   .card img {
     width: 100%;
     height: 200px;
@@ -203,8 +217,12 @@
     color: #ff0000;
   }
   
-
-
+  i.fas.fa-times {
+    margin-top: 50px;
+  }
+  i.fas.fa-heart.favorite-button{
+  margin-top: 35px;
+}
 
 /*-------------footer-------------*/
   

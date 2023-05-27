@@ -30,7 +30,7 @@
   }
   .element-above-background {
     position: relative;
-    z-index: 1; /* Higher value to bring the element forward */
+    z-index: 1; 
   }
 
 
@@ -162,9 +162,10 @@
     align-items: center;
     background-color: black;
     color: white;
-    padding: 20px;
+    padding: 30px;
+    text-align: center left;
+    margin-left: 150px;
   }
-  
   .column-1,
   .column-2,
   .column-3 {

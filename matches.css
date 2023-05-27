@@ -30,7 +30,7 @@
   }
   .element-above-background {
     position: relative;
-    z-index: 1; /* Higher value to bring the element forward */
+    z-index: 1; 
   }
 
 
@@ -155,6 +155,85 @@
 
 /*-------------cards-------------*/
 
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-top: 6%;
+  overflow: hidden;
+  opacity: 0;
+  animation: fade-in 1s ease-in-out forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 16px;
+  color: #888888;
+}
+
+.card-icons {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  color: #888888;
+}
+
+.card-icons i {
+  padding-left: 70px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.card-icons i:hover {
+  color: #ff0000;
+}
+
+i.fas.fa-times {
+  margin-top: 50px;
+}
+
+i.fas.fa-heart.favorite-button {
+  margin-top: 35px;
+}
 
 
 
