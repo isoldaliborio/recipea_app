@@ -46,7 +46,7 @@ class TestGetRecipeEdamam(unittest.TestCase):
             self.assertEqual(recipe["cuisine_type"].lower(), cuisine_type.lower())
             self.assertIsNotNone(recipe["ingredients"])
 
-        # Todo: Not needed
+        # Todo: Not needed because we removed the request (see line 28)
         # if response.status_code != 200:
         #     raise Exception(response.status_code)
 
@@ -62,6 +62,7 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # with self.assertRaises(Exception):
         #     get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
+        # Todo: changed to assertIsNone because results are empty and not invalid
         self.assertIsNone(get_recipe_edamam(cuisine_type, health, meal_type, ingredient))
     #
     # # Test response if no result is found.
@@ -93,8 +94,7 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # Todo: empty results will always come as None
         self.assertIsNone(recipes)
 
-    # Todo: this test would have the same results as test_get_recipe_edamam_with_no_results()
-    # I think it can be removed. Anyway, this request still brings results, so it is failing.
+    # Todo: this test would have the same results as test_get_recipe_edamam_with_no_results().I think it can be removed.
     def test_get_recipe_edamam_with_nonexistent_ingredient(self):
         cuisine_type = "Italian"
         health = "Vegetarian"
@@ -114,7 +114,8 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # meal_type = "lunch/dinner"
         # ingredient = "Pasta"
 
-        # Todo: this is making all other tests fail. It is making the inner requests for all tests invalid.
+        # Todo: this is making all other tests fail. It is making the inner requests invalid for all previous tests.
+        # Todo: I believe this entire test is not needed
         # Maybe we should remove this test entirely.
 
         # Simulate a connection error
