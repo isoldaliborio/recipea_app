@@ -6,11 +6,11 @@ from recipea_db import insert_recipe, search_recipe, update_recipe
 
 class RecipeaDbTest(unittest.TestCase):
 
-    def test_insert_recipe(self):
-
+    def test_insert_recipe_db(self):
         db = connect()
 
-        recipe_data = {
+        # Setup
+        data = {
             "recipe_name": "Nigerian Buns",
             "cuisine_type": "Nigerian",
             "health": "Vegetarian",
@@ -22,12 +22,11 @@ class RecipeaDbTest(unittest.TestCase):
         }
 
         # Call the function
-        response = insert_recipe(recipe_data)
+        message, status = insert_recipe(data)
 
         # Assert the results
-        self.assertEqual(response.status_code, 200)
-        self.assertIn("status", response.json())
-        self.assertEqual(response.json()["status"], "Success!")
+        self.assertEqual(message, {"status": "success"})
+        self.assertEqual(status, 200)
 
         # Check the database
         connection = connect()
@@ -36,7 +35,7 @@ class RecipeaDbTest(unittest.TestCase):
     def test_update_recipe(self):
         db = connect()
         # Setup
-        recipe_data = {
+        data = {
             "recipe_name": "Nigerian Buns",
             "cuisine_type": "Nigerian",
             "health": "Vegetarian",
@@ -48,14 +47,14 @@ class RecipeaDbTest(unittest.TestCase):
         }
 
         # Call the function
-        response = update_recipe(recipe_data)
+        recipe_id = 16
+        message, status = update_recipe(recipe_id, data)
 
         # Check the status code
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(status, 200)
 
         # Check the response data
-        self.assertIn("status", response.json())
-        self.assertEqual(response.json()["status"], "success")
+        self.assertEqual(message, {"status": "success"})
 
     def test_search_recipe(self):
         db = connect()
@@ -72,12 +71,11 @@ class RecipeaDbTest(unittest.TestCase):
         response = search_recipe(**search_params)
 
         # Check the status code
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response, ({'data': [], 'status': 'success'}, 200))
 
         # Check the response data
-        self.assertIn("status", response.json())
-        self.assertEqual(response.json()["status"], "success")
-        self.assertIn("data", response.json())
+        self.assertIn("status", dict(response[0]))
+        self.assertEqual(json.loads(json.dumps(dict(response[0]))).get("status"), "success")
 
 
 if __name__ == "__main__":
