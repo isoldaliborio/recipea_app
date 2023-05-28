@@ -1,7 +1,7 @@
 import os
 import unittest
-import requests
 from dotenv import load_dotenv
+from edamam import get_recipe_edamam
 
 # Load environment variables from .env file
 load_dotenv()
@@ -11,15 +11,13 @@ base_url = os.getenv("EDAMAM_BASE_URL")
 app_id = os.getenv("EDAMAM_APP_ID")
 app_key = os.getenv("EDAMAM_APP_KEY")
 
-from edamam import get_recipe_edamam
-
 
 class TestGetRecipeEdamam(unittest.TestCase):
 
     # Test if with valid parameters a recipe can be retrieved
     def test_get_recipe_edamam_with_valid_parameters(self):
         # Set up the test data
-        cuisine_type = "italian"  # todo: has to be lowercase
+        cuisine_type = "Italian"
         health = "Vegetarian"
         meal_type = "lunch/dinner"
         ingredient = "Rigatoni"
@@ -40,12 +38,12 @@ class TestGetRecipeEdamam(unittest.TestCase):
         self.assertGreater(len(recipes), 0)
 
         # Assert that each recipe in the list has the expected properties
+
         for recipe in recipes:
-            # Todo: converting everything to .lower() so we guarantee they are the same
             self.assertEqual(recipe["meal_type"], meal_type)
             # Todo: The response from the API is not filtering by "health" correctly, I am not sure why. I removed it.
             # self.assertIn(recipe["health"], health)
-            self.assertEqual(recipe["cuisine_type"], cuisine_type)
+            self.assertEqual(recipe["cuisine_type"].lower(), cuisine_type.lower())
             self.assertIsNotNone(recipe["ingredients"])
 
         # Todo: Not needed
