@@ -13,6 +13,9 @@ app_key = os.getenv("EDAMAM_APP_KEY")
 
 def get_recipe_edamam(cuisine_type, health, meal_type, ingredient):
     try:
+        # Replace characters not allowed in requests (e.g. white space and forward slash)
+        cuisine_type, health, meal_type, ingredient = list(process_params(cuisine_type, health, meal_type, ingredient))
+
         meal_type = f"&mealType={meal_type}" if meal_type else ""
         health = f"&Health={health}" if health else ""
         cuisine_type = f"&cuisineType={cuisine_type}" if cuisine_type else ""
@@ -60,3 +63,8 @@ def get_recipe_edamam(cuisine_type, health, meal_type, ingredient):
 
     except Exception:
         raise
+
+
+def process_params(*params):
+    for param in params:
+        yield param.lower().replace("/", "%5f").replace(" ", "%20")
