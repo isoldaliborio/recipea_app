@@ -3,7 +3,13 @@ import json
 from recipea.app.db.mysql_connector import connect
 from recipea_db import insert_recipe, search_recipe, update_recipe
 
-
+"""
+ IMPORTANT:
+ PLEASE READ BEFORE PROCEEDING WITH THE TESTS:
+ The tests were chosen to actually modify the DB to better test if everything was in order until the presentation.
+ If further time for development and testing was allowed, it would be substituted by mock tests in order to not risk
+ any unnecessary data modification or addition.
+"""
 class RecipeaDbTest(unittest.TestCase):
 
     def test_insert_recipe_db(self):

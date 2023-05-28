@@ -1,5 +1,6 @@
 import os
 import unittest
+import requests
 from dotenv import load_dotenv
 from edamam import get_recipe_edamam
 
@@ -11,6 +12,12 @@ base_url = os.getenv("EDAMAM_BASE_URL")
 app_id = os.getenv("EDAMAM_APP_ID")
 app_key = os.getenv("EDAMAM_APP_KEY")
 
+"""
+IMPORTANT:
+PLEASE READ BEFORE PROCEEDING WITH THE TESTS:
+
+This file has two classes as one holds a test that simulates a connection issue that would fail the other tests.
+"""
 
 class TestGetRecipeEdamam(unittest.TestCase):
 
@@ -25,12 +32,6 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # Call the function
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
-        # Todo:
-        # The request is made inside get_recipe_edamam(), I don't think it's needed here
-        # Also, the "base_url" is not the right url to make the request,
-        # because it doesn't have parameters (they are built inside the function)
-        # response = requests.get(base_url)
-
         # Assert that the function returned a list of recipes
         self.assertIsInstance(recipes, list)
 
@@ -41,33 +42,17 @@ class TestGetRecipeEdamam(unittest.TestCase):
 
         for recipe in recipes:
             self.assertEqual(recipe["meal_type"], meal_type)
-            # Todo: The response from the API is not filtering by "health" correctly, I am not sure why. I removed it.
-            # self.assertIn(recipe["health"], health)
             self.assertEqual(recipe["cuisine_type"].lower(), cuisine_type.lower())
             self.assertIsNotNone(recipe["ingredients"])
 
-        # Todo: Not needed because we removed the request (see line 28)
-        # if response.status_code != 200:
-        #     raise Exception(response.status_code)
-
-    # Test if with invalid/blank parameters Exception will be raised.
-    # Todo: empty params are not invalid, so this test is the same as test_get_recipe_edamam_with_empty_parameters()
     def test_get_recipe_edamam_with_invalid_parameters(self):
         cuisine_type = ""
         health = ""
         meal_type = ""
         ingredient = ""
-
-        # Call the function
-        # with self.assertRaises(Exception):
-        #     get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
-
-        # Todo: changed to assertIsNone because results are empty and not invalid
         self.assertIsNone(get_recipe_edamam(cuisine_type, health, meal_type, ingredient))
-    #
-    # # Test response if no result is found.
+
     def test_get_recipe_edamam_with_no_results(self):
-        # Todo: changed params to something more absurd
         cuisine_type = "Macedonian"
         health = "Vegan"
         meal_type = "breakfast"
@@ -86,20 +71,12 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # Call the function
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
-        # Assert that the function returned an empty list
-        # if recipes:
-        #     self.assertEqual(recipes, [])
-        # else:
-        #     self.assertIsNone(recipes)
-        # Todo: empty results will always come as None
         self.assertIsNone(recipes)
 
-    # Todo: this test would have the same results as test_get_recipe_edamam_with_no_results().I think it can be removed.
     def test_get_recipe_edamam_with_nonexistent_ingredient(self):
         cuisine_type = "Italian"
         health = "Vegetarian"
         meal_type = "lunch/dinner"
-        # Todo: changed it to make the test succeed, but please check if this test is needed.
         ingredient = "XXXXXXXXX"
 
         recipes = get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
@@ -107,22 +84,19 @@ class TestGetRecipeEdamam(unittest.TestCase):
         # Assert that the function returned an empty list
         self.assertIsNone(recipes)
 
+class TestConnectionIssueEdamam(unittest.TestCase):
+
     def test_get_recipe_edamam_with_connection_error(self):
-        ...
-        # cuisine_type = "Italian"
-        # health = "Vegetarian"
-        # meal_type = "lunch/dinner"
-        # ingredient = "Pasta"
+        cuisine_type = "Italian"
+        health = "Vegetarian"
+        meal_type = "lunch/dinner"
+        ingredient = "Pasta"
 
-        # Todo: this is making all other tests fail. It is making the inner requests invalid for all previous tests.
-        # Todo: I believe this entire test is not needed
-        # Maybe we should remove this test entirely.
+        #Simulate a connection error
+        requests.get = lambda *args, **kwargs: None
 
-        # Simulate a connection error
-        # requests.get = lambda *args, **kwargs: None
-        #
-        # with self.assertRaises(Exception):
-        #     get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
+        with self.assertRaises(Exception):
+            get_recipe_edamam(cuisine_type, health, meal_type, ingredient)
 
 
 if __name__ == "__main__":
