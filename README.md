@@ -79,18 +79,30 @@ The application should be running on `localhost:5000`
 
 1. Once the app is running you can start making requests using the API endpoints.
 
--  `GET` requests can be made from the browser
+-  `GET` requests can be made from the browser:
+-  `GET` from Edamam
 
--- `
-`
+-- `http://127.0.0.1:5000/search/edamam?Health=Gluten-Free&cuisineType=French&mealType=dinner&ingredient=cheese`
 
-- For `POST`, you can use the app [Postman](https://www.postman.com/downloads/) or the command `curl` using the terminal, or create a file with the client side.
+-  `GET` from API DB
 
--- `add link to Postman docs/tutorial`
+-- -- `http://127.0.0.1:5000/recipes?Health=Gluten-Free&cuisineType=Brazilian&mealType=Breakfast&ingredient=freshly%20grated%20parmesan%20cheese`
 
-Using curl from the terminal:
+- For `POST` `DELETE` `ADD`, you can use the app [Postman](https://www.postman.com/downloads/) or the command `curl` using the terminal, or create a file with the client side.
 
--- `curl -X POST -H "Content-Type: application/json" -d '{"recipe_name": "Moqueca baiana vegetariana", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "60", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes`
+-- Postman [tutorial](https://learning.postman.com/docs/sending-requests/requests/)
+
+- Using curl from the terminal:
+
+`POST` add recipe
+
+-- `curl -X POST -H "Content-Type: application/json" -d '{"recipe_name": "New recipe", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "60", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes`
+
+`DELETE` delete recipe
+-- `curl -X DELETE localhost:5000/recipes/21`
+
+`PUP` update recipe
+-- `curl -X PUT -H "Content-Type: application/json" -d '{"recipe_name": "Test presentation", "cuisine_type": "brazilian", "health": "vegetarian", "meal_type": "lunch/dinner", "cooking_directions": "Cook well", "preparation_time": "01:00:00", "portions": "7", "image_url": "", "ingredients": [{"name": "palm oil", "quantity": "1", "measure": "bottle"}, {"name": "coconut milk", "quantity": 1, "measure": "can"}]}' localhost:5000/recipes/25`
 
   
 ## App architecture  
@@ -120,13 +132,13 @@ Application entry point.
 This is where the Flask app is initialized and the routes are registered. 
 
 ### `tests/test_api_routes `
-xxxxxxx. 
+Tests for the routes functionalities. 
 
 ### `tests/test_edamam `
-xxxxxxx. 
+Tests for the search on Edamam API. 
 
 ### `tests/test_recipea_db `
-xxxxxxx. 
+Tests database functions to search, add, remove and change data on database. 
 
 ### `.env.sample  `
 It contains sensitive information of credential acesses,  like connection credentials, API keys, etc. 

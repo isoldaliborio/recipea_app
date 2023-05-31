@@ -1,27 +1,6 @@
 
 
 # # Python Console Application
-# # Introduction
-# print('Welcome to Recipea')
-# print('Just like Tinder, but with taste')
-# while True:
-#     # Display options to the user
-#     print("1. Add a recipe")
-#     print("2. Search for recipes")
-#     print("3. Exit")
-#
-#     choice = input("Enter your choice (1-3): ")
-#
-#     if choice == "1":
-#         # Logic to add a recipe
-#         # Create a dictionary for recipe table with the user input
-#         n = ("recipe_name", "preparation_time", "portions, meal_type",
-#         "health, cuisine_type", "cooking_directions", "image_url")
-#         recipe_dict = {}
-#         for key in n:
-#             value = input(f"Enter your {key}: ")
-#             recipe_dict[key] = value
-#
 
 
 from recipea.app.api.recipea_db import insert_recipe
