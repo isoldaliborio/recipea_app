@@ -2,7 +2,7 @@ import os
 import unittest
 import requests
 from dotenv import load_dotenv
-from edamam import get_recipe_edamam
+from recipea.app.api.edamam import get_recipe_edamam
 
 # Load environment variables from .env file
 load_dotenv()

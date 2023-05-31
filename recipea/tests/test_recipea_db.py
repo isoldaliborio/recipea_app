@@ -1,7 +1,7 @@
 import unittest
 import json
 from recipea.app.db.mysql_connector import connect
-from recipea_db import insert_recipe, search_recipe, update_recipe
+from recipea.app.api.recipea_db import insert_recipe, search_recipe, update_recipe
 
 """
  IMPORTANT:

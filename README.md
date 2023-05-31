@@ -81,7 +81,8 @@ The application should be running on `localhost:5000`
 
 -  `GET` requests can be made from the browser
 
--- `http://127.0.0.1:5000/search/edamam?Health=Kosher&cuisineType=italian&ingredient=potato`
+-- `
+`
 
 - For `POST`, you can use the app [Postman](https://www.postman.com/downloads/) or the command `curl` using the terminal, or create a file with the client side.
 
@@ -118,6 +119,15 @@ File to indicate that the package can be imported.
 Application entry point. 
 This is where the Flask app is initialized and the routes are registered. 
 
+### `tests/test_api_routes `
+xxxxxxx. 
+
+### `tests/test_edamam `
+xxxxxxx. 
+
+### `tests/test_recipea_db `
+xxxxxxx. 
+
 ### `.env.sample  `
 It contains sensitive information of credential acesses,  like connection credentials, API keys, etc. 
 A template for the .env file. See instructions above.
@@ -146,7 +156,8 @@ recipea/
 │   ├── run.py  
 ├── docs/  
 │   ├── folder_structure.txt  
-│   ├── Recipe Match App.docx  
+│   ├── Recipe Match App.docx 
+├── tests/   
 ├── .env.sample  
 ├── requirements.txt  
 .gitignore  
